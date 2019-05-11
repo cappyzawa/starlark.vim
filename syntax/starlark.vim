@@ -14,6 +14,7 @@ syn match starlarkType /\<def\>/
 hi def link starlarkStatement Statement
 hi def link starlarkConditional Conditional
 hi def link starlarkRepeat Repeat
+hi def link starlarkOperator Operator
 hi def link starlarkType Type
 
 syn keyword starlarkBuitin any all bool chr dict dir enumerate float gatattr hasattr hash int len list max min ord print range repr reversed set sorted str tuple type zip
