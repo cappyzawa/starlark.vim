@@ -19,7 +19,7 @@ resources:
     file: VERSION
 - name: repo
   type: git
-  icon: git-circle
+  icon: github-circle
   source:
     uri: https://github.com/cappyzawa/starlark.vim
     branch: master
