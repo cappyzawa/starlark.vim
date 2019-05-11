@@ -1,14 +1,18 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! starlark#set_syntax() abort
+function! starlark#set_syntax(contained) abort
+  let l:option = ''
+  if a:contained
+    let l:option = 'contained'
+  endif
   syn case match
-  syn keyword starlarkStatement None True False
-  syn keyword starlarkStatement return break continue lambda
-  syn keyword starlarkConditional if elif else if/end
-  syn keyword starlarkRepeat for while
-  syn keyword starlarkOperator and in not or
-  syn match starlarkType /\<def\>/
+  exec 'syn keyword starlarkStatement None True False ' . l:option
+  exec 'syn keyword starlarkStatement return break continue lambda ' l:option
+  exec 'syn keyword starlarkConditional if elif else if/end ' . l:option
+  exec 'syn keyword starlarkRepeat for while ' . l:option
+  exec 'syn keyword starlarkOperator and in not or ' . l:option
+  exec 'syn match starlarkType /\<def\>/ ' . l:option
 
   hi def link starlarkStatement Statement
   hi def link starlarkConditional Conditional
@@ -16,15 +20,15 @@ function! starlark#set_syntax() abort
   hi def link starlarkOperator Operator
   hi def link starlarkType Type
 
-  syn keyword starlarkBuitin any all bool chr dict dir enumerate float gatattr hasattr hash int len list max min ord print range repr reversed set sorted str tuple type zip
-  syn keyword starlarkBuitin clear get items keys pop popitem setdefault update values
-  syn keyword starlarkBuitin append clear extend index insert pop remove
-  syn keyword starlarkBuitin union
-  syn keyword starlarkBuitin elem_ords capitalize codepoint_ords count endswith find format index isalpha isdigit islower isspace istitle isupper join lower lstrip partition replace rfind rindex rpartition rsplit rstrip split elems codepoints splitlines startswith strip title upper
+  exec 'syn keyword starlarkBuitin any all bool chr dict dir enumerate float gatattr hasattr hash int len list max min ord print range repr reversed set sorted str tuple type zip ' . l:option
+  exec 'syn keyword starlarkBuitin clear get items keys pop popitem setdefault update values ' . l:option
+  exec 'syn keyword starlarkBuitin append clear extend index insert pop remove ' . l:option
+  exec 'syn keyword starlarkBuitin union ' . l:option
+  exec 'syn keyword starlarkBuitin elem_ords capitalize codepoint_ords count endswith find format index isalpha isdigit islower isspace istitle isupper join lower lstrip partition replace rfind rindex rpartition rsplit rstrip split elems codepoints splitlines startswith strip title upper '. l:option
 
   hi def link starlarkBuitin Function
 
-  syn keyword starlarkInclude load
+  exec 'syn keyword starlarkInclude load ' . l:option
 
   hi def link starlarkInclude Statement
 
@@ -35,8 +39,8 @@ function! starlark#set_syntax() abort
   hi def link starlarkTodo Todo
   hi def link starlarkComment Comment
 
-  syn region starlarkBlock start="{" end="}" transparent fold
-  syn region starlarkParen start="(" end=")" transparent
+  exec 'syn region starlarkBlock start="{" end="}" transparent fold ' . l:option
+  exec 'syn region starlarkParen start="(" end=")" transparent ' . l:option
 
   syn sync minlines=500
 endfunction
