@@ -1,0 +1,42 @@
+---
+resources:
+- name: release
+  type: github-release
+  icon: package-variant-closed
+  source:
+    owner: cappyzawa
+    repository: starlark.vim
+    access_token: ((github-access-token))
+- name: version
+  type: semver
+  icon: tag
+  source:
+    driver: git
+    uri: git@github.com:cappyzawa/starlark.vim.git
+    branch: version
+    private_key: ((private-key))
+    commit_message: "[ci skip] bump version"
+    file: VERSION
+- name: repo
+  type: git
+  icon: git-circle
+  source:
+    uri: https://github.com/cappyzawa/starlark.vim
+    branch: master
+
+jobs:
+#@ for l in ["patch", "minor", "major"]:
+- name: #@ "{}-release".format(l)
+  build_logs_to_retain: 10
+  plan:
+  - aggregate:
+    - get: repo
+    - put: version
+      params:
+        bump: #@ l
+  - put: release
+    params:
+      name: version/version
+      tag: version/version
+      tag_prefix: v
+#@ end
