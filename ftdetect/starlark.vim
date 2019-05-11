@@ -1,1 +1,1 @@
-au BufNewFile, BufRead *.star setlocal filetype=starlark
+au BufNewFile,BufRead *.star setlocal filetype=starlark
