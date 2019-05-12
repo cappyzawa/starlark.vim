@@ -9,7 +9,7 @@ function! starlark#set_syntax(contained) abort
   syn case match
   exec 'syn keyword starlarkStatement None True False ' . l:option
   exec 'syn keyword starlarkStatement return break continue lambda ' l:option
-  exec 'syn keyword starlarkConditional if elif else if/end ' . l:option
+  exec 'syn keyword starlarkConditional if elif else ' . l:option
   exec 'syn keyword starlarkRepeat for while ' . l:option
   exec 'syn keyword starlarkOperator and in not or ' . l:option
   exec 'syn match starlarkType /\<def\>/ ' . l:option
