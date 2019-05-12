@@ -42,6 +42,11 @@ function! starlark#set_syntax(contained) abort
   exec 'syn region starlarkBlock start="{" end="}" transparent fold ' . l:option
   exec 'syn region starlarkParen start="(" end=")" transparent ' . l:option
 
+  exec 'syn region starlarkString start=+"+ skip=+\\\\\|\\"+ end=+"+ ' . l:option
+  exec 'syn region starlarkString start=+`+ end=+`+ ' . l:option
+
+  hi def link starlarkString String
+
   syn sync minlines=500
 endfunction
 
