@@ -44,6 +44,7 @@ function! starlark#set_syntax(contained) abort
 
   exec 'syn region starlarkString start=+"+ skip=+\\\\\|\\"+ end=+"+ ' . l:option
   exec 'syn region starlarkString start=+`+ end=+`+ ' . l:option
+  exec "syn region starlarkString start=+'+ end=+'+ " . l:option
 
   hi def link starlarkString String
 
